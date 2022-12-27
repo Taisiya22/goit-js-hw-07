@@ -1,14 +1,17 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-const galleryContainer = document.querySelector(".gallery");
 
-const imgMarkup = createGalleryImgMarkup(galleryItems);
-galleryContainer.insertAdjacentHTML("beforeend", imgMarkup)
-galleryContainer.addEventListener("click", onGalleryContainerClick)
 
-function createGalleryImgMarkup(galleryItems) { 
- 
-    return galleryItems.map(({ preview, original, description }) => {
+const gallery = document.querySelector(".gallery")
+
+const markup = createImgMarkup(galleryItems);
+
+gallery.insertAdjacentHTML("beforeend", markup);
+
+gallery.addEventListener("click", onGalleryImgClick)
+
+function createImgMarkup(galleryItems) { 
+    return galleryItems.map(({ preview, original, description }) => { 
         return `<div class="gallery__item">
   <a class="gallery__link" href="${original}">
     <img
@@ -18,35 +21,28 @@ function createGalleryImgMarkup(galleryItems) {
       alt="${description}"
     />
   </a>
-</div>`;
-     }).join('')
-
+</div>`
+    }).join("")
 }
 
-// console.log(imgMarkup)
-
-function onGalleryContainerClick(event) {
-    event.preventDefault();
-    const isGalleryImgEl = event.target.classList.contains('gallery__image');
-    if (!isGalleryImgEl)  return; 
-      
-    const largeImg = event.target.dataset.source;
+function onGalleryImgClick(e) { 
+    e.preventDefault();
+    const isImgClass = e.target.classList.contains('gallery__image')
+    
+    if (!isImgClass) { 
+        return;
+    }
+    const largeImg = e.target.dataset.source;
     const instance = basicLightbox.create(`
     <img src="${largeImg}" width="800" height="600">
-`) 
-   console.log(instance)
-    
+`)
+
     instance.show()
-
-window.addEventListener("keydown", closeEscape)
-function closeEscape(event) {
- 
-  if (event.code === 'Escape') {
-    instance.close();
+    
+    window.addEventListener("keydown", (e) => { 
+        if (e.code === "Escape") { 
+            instance.close();
         }
-    }
-   
- }
+    })
 
- 
-
+}
