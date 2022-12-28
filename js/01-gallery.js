@@ -11,18 +11,30 @@ gallery.insertAdjacentHTML("beforeend", markup);
 gallery.addEventListener("click", onGalleryImgClick)
 
 function createImgMarkup(galleryItems) { 
-    return galleryItems.map(({ preview, original, description }) => { 
-        return `<div class="gallery__item">
-  <a class="gallery__link" href="${original}">
-    <img
-      class="gallery__image"
+//     return galleryItems.map(({ preview, original, description }) => { 
+//         return `<div class="gallery__item">
+//   <a class="gallery__link" href="${original}">
+//     <img
+//       class="gallery__image"
+//       src="${preview}"
+//       data-source="${original}"
+//       alt="${description}"
+//     />
+//   </a>
+// </div>`
+//     }).join("")
+    return galleryItems.reduce((acc, { preview, original, description }) => {
+        return acc + `<div class="gallery__item">
+   <a class="gallery__link" href="${original}">
+     <img
+       class="gallery__image"
       src="${preview}"
       data-source="${original}"
       alt="${description}"
     />
-  </a>
-</div>`
-    }).join("")
+   </a>
+ </div>`
+     }, '')
 }
 
 function onGalleryImgClick(e) { 
@@ -36,7 +48,8 @@ function onGalleryImgClick(e) {
     const instance = basicLightbox.create(`
     <img src="${largeImg}" width="800" height="600">
 `)
-
+    
+    
     instance.show()
     
     window.addEventListener("keydown", (e) => { 
