@@ -21,6 +21,25 @@ function createImgMarkup(galleryItems) {
     return galleryItems.reduce((acc, { preview, original, description } ) => {return acc + `<a class="gallery__item" href="${original}">
   <img class="gallery__image" src="${preview}" alt="${description}" />
  </a> ` }, '')
+    
+    // const items = [];
+    // galleryItems.forEach(el => { 
+       
+    //     const a = document.createElement('a');
+    //     const img = document.createElement('img');
+    //     a.append(img);
+    //     a.classList.add('gallery__item');
+    //     a.href = el.original;
+    //     img.classList.add('gallery__image');
+    //     img.src = el.preview;
+    //     img.alt = el.description;
+       
+    //     items.push(a);
+    //     console.log(items)
+       
+    // })
+    // gallery.append(...items)
+
 }
 
 
