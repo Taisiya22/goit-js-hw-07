@@ -35,7 +35,7 @@ function createImgMarkup(galleryItems) {
     //     img.alt = el.description;
        
     //     items.push(a);
-    //     console.log(items)
+     
        
     // })
     // gallery.append(...items)
@@ -48,15 +48,14 @@ function onGalleryImgClick(e) {
     const isImgClass = e.target.classList.contains('gallery__image')
     
     if (!isImgClass) { 
+        
         return;
     }
     
-    var lightbox = new SimpleLightbox('.gallery a', {
+}
+
+ var lightbox = new SimpleLightbox('.gallery a', {
         captionDelay: 250,
         captionsData: 'alt',
        
     } );
-    
-   
-
-}
