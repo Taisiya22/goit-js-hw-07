@@ -42,20 +42,15 @@ function createImgMarkup(galleryItems) {
 
 }
 
-
-function onGalleryImgClick(e) { 
-    e.preventDefault();
-    const isImgClass = e.target.classList.contains('gallery__image')
-    
-    if (!isImgClass) { 
-        
-        return;
-    }
-    
-}
-
- var lightbox = new SimpleLightbox('.gallery a', {
+var lightbox = new SimpleLightbox('.gallery a', {
         captionDelay: 250,
         captionsData: 'alt',
        
     } );
+
+function onGalleryImgClick(e) { 
+    e.preventDefault();
+    
+}
+ 
+ 
